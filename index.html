@@ -908,6 +908,133 @@
     .audience-card h3 { margin: 0 0 11px; font-size: 18px; }
     .audience-card p { margin: 0; color: var(--muted); font-size: 13px; line-height: 1.7; }
 
+    .billing-toggle {
+      display: inline-flex;
+      padding: 4px;
+      border-radius: 99px;
+      border: 1px solid var(--line);
+      background: rgba(255,255,255,.025);
+      margin: 36px auto 0;
+    }
+    .billing-toggle button {
+      padding: 9px 16px;
+      border: 0;
+      background: transparent;
+      color: var(--muted);
+      font-size: 12px;
+      font-weight: 600;
+      border-radius: 99px;
+      cursor: pointer;
+      transition: color .18s ease, background .18s ease;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .billing-toggle button:hover { color: var(--text); }
+    .billing-toggle button.active { background: var(--panel-3); color: var(--text); }
+    .billing-toggle .save {
+      padding: 3px 7px;
+      border-radius: 99px;
+      background: var(--ember-soft);
+      color: var(--ember-bright);
+      font-size: 9px;
+      font-weight: 700;
+      letter-spacing: .04em;
+    }
+    .pricing-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 18px;
+      margin-top: 44px;
+      align-items: stretch;
+    }
+    .pricing-card {
+      padding: 32px 28px;
+      border: 1px solid var(--line);
+      border-radius: 18px;
+      background: linear-gradient(180deg, rgba(255,255,255,.025), transparent), var(--panel);
+      display: flex;
+      flex-direction: column;
+      position: relative;
+      overflow: hidden;
+    }
+    .pricing-card.featured {
+      border-color: rgba(246,160,74,.32);
+      box-shadow: 0 24px 60px rgba(224,125,60,.12);
+    }
+    .pricing-card.featured::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      border-radius: inherit;
+      background: radial-gradient(circle at 85% 0%, rgba(224,125,60,.12), transparent 16rem);
+      pointer-events: none;
+    }
+    .pricing-card > * { position: relative; z-index: 1; }
+    .plan-head { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
+    .plan-name {
+      font-family: "Geist Mono", monospace;
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      color: var(--text);
+    }
+    .plan-tag {
+      padding: 4px 8px;
+      border-radius: 99px;
+      background: linear-gradient(180deg, #F5A154, var(--ember));
+      color: #201207;
+      font-size: 9px;
+      font-weight: 800;
+      letter-spacing: .1em;
+    }
+    .plan-desc {
+      margin: 12px 0 22px;
+      color: var(--muted);
+      font-size: 13px;
+      line-height: 1.65;
+      min-height: 42px;
+    }
+    .plan-price { display: flex; align-items: baseline; gap: 6px; }
+    .plan-price .currency { font-size: 20px; color: var(--muted); font-weight: 600; }
+    .plan-price .amount {
+      font-size: 46px;
+      font-weight: 800;
+      letter-spacing: -.045em;
+      line-height: 1;
+      color: var(--text);
+    }
+    .plan-price .cadence { color: var(--muted); font-size: 14px; font-weight: 500; }
+    .plan-billed { margin-top: 8px; color: var(--quiet); font-size: 11px; min-height: 14px; font-family: "Geist Mono", monospace; }
+    .plan-features {
+      list-style: none;
+      padding: 0;
+      margin: 26px 0 0;
+      display: grid;
+      gap: 11px;
+    }
+    .plan-features li {
+      display: flex;
+      gap: 10px;
+      font-size: 13px;
+      color: var(--text-2);
+      line-height: 1.5;
+    }
+    .plan-features li.muted { color: var(--quiet); }
+    .plan-features svg { width: 14px; height: 14px; flex: none; margin-top: 3px; }
+    .plan-features svg.yes { color: var(--green); }
+    .plan-features svg.no { color: var(--quiet); opacity: .6; }
+    .plan-cta { margin-top: auto; padding-top: 32px; }
+    .plan-cta .btn { width: 100%; }
+    .plan-note {
+      margin-top: 36px;
+      color: var(--quiet);
+      font-size: 12px;
+      text-align: center;
+      font-family: "Geist Mono", monospace;
+    }
+
     .cta-shell {
       position: relative;
       padding: 78px 46px;
@@ -1019,6 +1146,7 @@
       .workflow-copy { position: static; }
       .feature-grid { grid-template-columns: repeat(2, 1fr); }
       .security-grid, .audience-grid { grid-template-columns: repeat(2, 1fr); }
+      .pricing-grid { grid-template-columns: 1fr; }
       .faq { grid-template-columns: 1fr; gap: 28px; }
     }
 
@@ -1101,7 +1229,7 @@
       </div>
       <div class="nav-actions">
         <a class="nav-link nav-signin" href="https://app.odinlogs.com/login">Sign in</a>
-        <a class="btn btn-primary btn-sm" href="#cta">Start for free <span class="arrow">→</span></a>
+        <a class="btn btn-primary btn-sm" href="https://app.odinlogs.com/signup">Start for free <span class="arrow">→</span></a>
       </div>
       <button class="mobile-toggle" id="mobileToggle" aria-label="Open navigation" aria-expanded="false">
         <span></span><span></span><span></span>
@@ -1117,7 +1245,7 @@
           <h1><span style="display:block">Every bug</span><span style="display:block">arrives with</span><span class="gradient-text" style="display:block">the evidence.</span></h1>
           <p class="hero-copy">Let anyone report a problem in one click or with voice. Odinlogs quietly captures the console, network, screenshot, environment and interaction context, then turns it into a diagnosed, deduplicated GitHub issue your engineers can act on.</p>
           <div class="hero-actions">
-            <a class="btn btn-primary" href="#cta">Start watching your app <span class="arrow">→</span></a>
+            <a class="btn btn-primary" href="https://app.odinlogs.com/signup">Start watching your app <span class="arrow">→</span></a>
             <a class="btn btn-secondary" href="#workflow">
               <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="m10 8 6 4-6 4z"/></svg>
               See how it works
@@ -1369,6 +1497,65 @@
       </div>
     </section>
 
+    <section class="section section-line" id="pricing">
+      <div class="container">
+        <div class="reveal" style="text-align:center;">
+          <div class="eyebrow">Pricing</div>
+          <h2 class="section-title" style="margin-inline:auto;">Start free. Upgrade when the bugs get serious.</h2>
+          <p class="section-copy" style="margin-inline:auto;">Pay once for occasional use, or subscribe when you want unlimited reports, audio capture and team collaboration.</p>
+          <div class="billing-toggle" role="tablist" aria-label="Billing period">
+            <button class="active" data-billing="annual" type="button" role="tab" aria-selected="true">Annual <span class="save">Save 20%</span></button>
+            <button data-billing="monthly" type="button" role="tab" aria-selected="false">Monthly</button>
+          </div>
+        </div>
+        <div class="pricing-grid reveal">
+          <article class="pricing-card">
+            <div class="plan-head"><span class="plan-name">Avulso</span></div>
+            <p class="plan-desc">Try Odinlogs on a single project. No subscription, credits last until used.</p>
+            <div class="plan-price">
+              <span class="currency">$</span><span class="amount">5</span><span class="cadence">one-time</span>
+            </div>
+            <div class="plan-billed">100 AI credits · USD</div>
+            <ul class="plan-features">
+              <li><svg class="yes" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="m5 12 5 5L20 7"/></svg>1 team member</li>
+              <li><svg class="yes" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="m5 12 5 5L20 7"/></svg>Unlimited projects</li>
+              <li><svg class="yes" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="m5 12 5 5L20 7"/></svg>7-day evidence retention</li>
+              <li><svg class="yes" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="m5 12 5 5L20 7"/></svg>100 AI diagnoses (one-time)</li>
+              <li><svg class="yes" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="m5 12 5 5L20 7"/></svg>Console, network &amp; screenshot capture</li>
+              <li><svg class="yes" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="m5 12 5 5L20 7"/></svg>Client-side PII masking</li>
+              <li><svg class="yes" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="m5 12 5 5L20 7"/></svg>GitHub App integration</li>
+              <li class="muted"><svg class="no" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 6l12 12M18 6 6 18"/></svg>Audio capture &amp; transcription</li>
+              <li class="muted"><svg class="no" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 6l12 12M18 6 6 18"/></svg>Custom widget branding</li>
+              <li class="muted"><svg class="no" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 6l12 12M18 6 6 18"/></svg>Slack &amp; Discord alerts</li>
+            </ul>
+            <div class="plan-cta"><a class="btn btn-secondary" href="https://app.odinlogs.com/signup?plan=payg">Get started</a></div>
+          </article>
+          <article class="pricing-card featured">
+            <div class="plan-head"><span class="plan-name">Pro</span><span class="plan-tag">MOST POPULAR</span></div>
+            <p class="plan-desc">For teams running Odinlogs across multiple projects, with audio, custom branding and priority support.</p>
+            <div class="plan-price">
+              <span class="currency">$</span><span class="amount" id="proAmount">15.17</span><span class="cadence">/ month</span>
+            </div>
+            <div class="plan-billed" id="proBilled">Billed annually · $182/yr · USD</div>
+            <ul class="plan-features">
+              <li><svg class="yes" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="m5 12 5 5L20 7"/></svg>Unlimited team members</li>
+              <li><svg class="yes" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="m5 12 5 5L20 7"/></svg>Unlimited projects</li>
+              <li><svg class="yes" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="m5 12 5 5L20 7"/></svg>30-day evidence retention</li>
+              <li><svg class="yes" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="m5 12 5 5L20 7"/></svg>1,000 AI diagnoses / month</li>
+              <li><svg class="yes" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="m5 12 5 5L20 7"/></svg>Console, network &amp; screenshot capture</li>
+              <li><svg class="yes" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="m5 12 5 5L20 7"/></svg>Client-side PII masking</li>
+              <li><svg class="yes" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="m5 12 5 5L20 7"/></svg>GitHub App integration</li>
+              <li><svg class="yes" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="m5 12 5 5L20 7"/></svg>Audio capture &amp; transcription</li>
+              <li><svg class="yes" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="m5 12 5 5L20 7"/></svg>Custom widget branding</li>
+              <li><svg class="yes" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="m5 12 5 5L20 7"/></svg>Slack &amp; Discord alerts</li>
+            </ul>
+            <div class="plan-cta"><a class="btn btn-primary" id="proCta" href="https://app.odinlogs.com/signup?plan=pro&billing=annual">Start Pro <span class="arrow">→</span></a></div>
+          </article>
+        </div>
+        <div class="plan-note">Soft limit: capture continues after credits run out, AI diagnosis pauses until you upgrade.</div>
+      </div>
+    </section>
+
     <section class="section section-line" id="faq">
       <div class="container">
         <div class="faq">
@@ -1379,29 +1566,14 @@
             <div class="faq-item"><button class="faq-question" type="button"><span>How does GitHub integration work?</span><span class="faq-plus">+</span></button><div class="faq-answer"><p>The Odinlogs GitHub App is connected to a repository with focused permissions. Odin uses repository context for correlation and opens or updates issues as Odinlogs [bot].</p></div></div>
             <div class="faq-item"><button class="faq-question" type="button"><span>How are repeated reports handled?</span><span class="faq-plus">+</span></button><div class="faq-answer"><p>Before opening a new issue, Odin compares the incident with existing records. Recurring errors can be grouped into one trackable issue instead of creating backlog noise.</p></div></div>
             <div class="faq-item"><button class="faq-question" type="button"><span>How is Odinlogs installed?</span><span class="faq-plus">+</span></button><div class="faq-answer"><p>Add the project widget script to the application, authorize its domains and connect the corresponding GitHub repository. The onboarding flow is designed to take only a few steps.</p></div></div>
+            <div class="faq-item"><button class="faq-question" type="button"><span>Can I try Odinlogs without a subscription?</span><span class="faq-plus">+</span></button><div class="faq-answer"><p>Yes. The Avulso pack costs US$ 5 one-time and includes 100 AI diagnoses on a single project, with no recurring charge. It is the fastest way to evaluate Odinlogs on a real codebase before deciding to upgrade.</p></div></div>
+            <div class="faq-item"><button class="faq-question" type="button"><span>Do you offer annual billing?</span><span class="faq-plus">+</span></button><div class="faq-answer"><p>Yes. The Pro plan can be billed monthly or annually. Annual billing saves 20% compared to monthly, bringing the effective price to US$ 15.17 per month billed once a year.</p></div></div>
+            <div class="faq-item"><button class="faq-question" type="button"><span>What happens when I run out of AI credits?</span><span class="faq-plus">+</span></button><div class="faq-answer"><p>Odinlogs applies a soft limit. The widget keeps capturing reports and saves the raw evidence to your dashboard, but AI diagnosis and GitHub issue creation pause until you upgrade or wait for credits to renew. No data is lost.</p></div></div>
           </div>
         </div>
       </div>
     </section>
 
-    <section class="section section-tight" id="cta">
-      <div class="container">
-        <div class="cta-shell reveal">
-          <img class="cta-mark" src="odinlogs-mark.png" alt="" aria-hidden="true" />
-          <div class="cta-content">
-            <div class="eyebrow">Early access</div>
-            <h2>Raise your watchtower.</h2>
-            <p>Turn every user report into a reproducible, prioritized engineering task, without another round of “can you send more details?”</p>
-            <form class="waitlist-form" id="waitlistForm">
-              <input class="waitlist-input" id="emailInput" type="email" required autocomplete="email" placeholder="you@company.com" aria-label="Work email" />
-              <button class="btn btn-primary" type="submit">Request early access <span class="arrow">→</span></button>
-            </form>
-            <div class="form-note mono">No spam. Product access and launch updates only.</div>
-            <div class="form-success" id="formSuccess"><span>✓</span><span>You're on the watchlist. We'll be in touch.</span></div>
-          </div>
-        </div>
-      </div>
-    </section>
   </main>
 
   <footer>
@@ -1477,14 +1649,25 @@
       catch { showToast('Select and copy the installation snippet.'); }
     });
 
-    document.getElementById('waitlistForm').addEventListener('submit', (event) => {
-      event.preventDefault();
-      const email = document.getElementById('emailInput');
-      if (!email.checkValidity()) { email.reportValidity(); return; }
-      document.getElementById('formSuccess').classList.add('show');
-      event.currentTarget.reset();
-      showToast('Early access request received.');
-    });
+    const billingButtons = document.querySelectorAll('.billing-toggle button');
+    const proAmount = document.getElementById('proAmount');
+    const proBilled = document.getElementById('proBilled');
+    const proCta = document.getElementById('proCta');
+    billingButtons.forEach(btn => btn.addEventListener('click', () => {
+      billingButtons.forEach(b => { b.classList.remove('active'); b.setAttribute('aria-selected', 'false'); });
+      btn.classList.add('active');
+      btn.setAttribute('aria-selected', 'true');
+      const mode = btn.dataset.billing;
+      if (mode === 'annual') {
+        proAmount.textContent = '15.17';
+        proBilled.textContent = 'Billed annually · $182/yr · USD';
+        proCta.href = 'https://app.odinlogs.com/signup?plan=pro&billing=annual';
+      } else {
+        proAmount.textContent = '19';
+        proBilled.textContent = 'Billed monthly · USD';
+        proCta.href = 'https://app.odinlogs.com/signup?plan=pro&billing=monthly';
+      }
+    }));
   </script>
 </body>
 </html>
