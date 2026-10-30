@@ -25,3 +25,11 @@ The folder can be deployed as-is to Cloudflare Pages, Vercel, Netlify, GitHub Pa
 ## Integration notes
 
 The early-access form currently demonstrates the front-end success state only. Connect the submit handler to your preferred form endpoint, CRM, or API before production use.
+
+## Deploy
+
+Hosted on Cloudflare Workers (static assets) at `odinlogs.com`; `www` redirects to the apex.
+
+```bash
+npx wrangler deploy
+```

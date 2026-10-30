@@ -1,0 +1,17 @@
+{
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "odinlogs-site",
+  "main": "src/worker.js",
+  "compatibility_date": "2026-10-01",
+  "assets": {
+    "directory": ".",
+    "binding": "ASSETS",
+    "not_found_handling": "404-page"
+  },
+  "routes": [
+    { "pattern": "odinlogs.com/*", "zone_name": "odinlogs.com" },
+    { "pattern": "www.odinlogs.com/*", "zone_name": "odinlogs.com" }
+  ],
+  "workers_dev": true,
+  "observability": { "enabled": true }
+}
